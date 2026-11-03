@@ -96,3 +96,15 @@ I (5281) lesson_2_3: loops=1000 work avg=3 us min=3 us max=369 us | period=1000 
 - **work avg = 3 µs**: one superloop pass (read the clock, poll the button, check the blink time) takes about 3 µs.
 - **max ≈ 370 µs**: the passes where the LED toggles. Sending the color to the WS2812 over RMT takes about that long.
 - **period = 1000 µs**: a full pass, including the 1 ms scheduler yield. That gives exactly one report per second, and there were no task-watchdog warnings.
+
+Pressing **Boot** 4 times. Each press gives exactly one mode change, so the debounce works:
+
+```
+I (98565) lesson_2_3: Mode: Always On
+I (100096) lesson_2_3: Mode: Always Off
+I (101707) lesson_2_3: Mode: Blinking
+I (103216) lesson_2_3: Mode: Always On
+I (122281) lesson_2_3: loops=1000 work avg=3 us min=3 us max=4 us | period=1000 us
+```
+
+In **Always On** the LED is never refreshed, so the max work time drops from about 370 µs to **4 µs**.
