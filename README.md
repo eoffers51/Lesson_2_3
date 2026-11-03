@@ -22,16 +22,28 @@ Beetroot Academy homework ([`TASK.md`](TASK.md)). The onboard RGB LED blinks wit
 | ⭐ Button interrupt, `static volatile bool button_pressed`, minimal ISR | ✅ | [`button.c`](main/button.c) |
 | ⭐ Mode state machine with `switch`, time-based debounce and atomic flag clear in the main loop | ✅ | [`main.c`](main/main.c), [`button.c`](main/button.c) |
 
-## 🔌 Hardware
+## 🔌 Wiring
 
-Nothing to wire. Everything is on the board:
+![Wiring diagram](docs/wiring.svg)
+
+Nothing to wire. Both parts are on the board:
 
 | Part | Pin | Notes |
 |---|---|---|
 | RGB LED (WS2812) | GPIO48 | Addressable LED, driven by `espressif/led_strip` over RMT |
 | Boot button | GPIO0 | Active LOW, internal pull-up, falling-edge interrupt |
 
-Board: VCC-GND YD-ESP32-S3 (an ESP32-S3-DevKitC-1 clone), connected over the USB-UART port (CH343).
+Board: VCC-GND YD-ESP32-S3 (an ESP32-S3-DevKitC-1 v1.0 clone), connected over the USB-UART port (CH343).
+
+## 🖥️ Simulate in Wokwi
+
+The circuit and code run in the [Wokwi](https://wokwi.com) simulator. In the simulation, click the **BOOT** button next to the board to switch modes.
+
+The Wokwi project runs this repo's own C code. Wokwi compiles ESP-IDF code with the Arduino ESP32 core, so [`wokwi/`](wokwi) has two small Wokwi-only files: `sketch.ino`, which starts our `app_main`, and `led.c`, the same LED API without the `led_strip` component. The `ESP_LOGI` messages (mode changes, loop timing) don't appear in Wokwi's serial monitor; watch the LED instead.
+
+- **VS Code:** install the *Wokwi Simulator* extension, run `idf.py build`, then run *Wokwi: Start Simulator*. This runs the real firmware: [`wokwi.toml`](wokwi.toml) points to the build, and [`diagram.json`](diagram.json) holds the circuit.
+
+Wokwi's DevKitC-1 has its RGB LED on GPIO38 and no clickable Boot button. To match this board, the diagram adds a NeoPixel on **GPIO48** and a button from **GPIO0** to GND. Right after a build, the simulator can run slower than real time, so the blinking may look slow for the first few seconds.
 
 ## 💡 Modes (press Boot to go to the next one)
 

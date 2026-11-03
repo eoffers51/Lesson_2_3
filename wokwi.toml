@@ -1,0 +1,6 @@
+# Wokwi simulator config (VS Code "Wokwi Simulator" extension or wokwi-cli).
+# Run `idf.py build` first; the circuit is in diagram.json.
+[wokwi]
+version = 1
+firmware = 'build/flasher_args.json'
+elf = 'build/Lesson_2_3.elf'

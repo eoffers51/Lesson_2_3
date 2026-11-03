@@ -34,6 +34,7 @@ Keep the modules flat in `main/` as `TASK.md` suggests: `main.c` (thin `app_main
 
 - LED = the onboard **WS2812 RGB LED on GPIO48** (confirmed on this board; GPIO38 does nothing). It is addressable, so `gpio_set_level` won't light it. Drive it with `espressif/led_strip` (RMT backend, 1 LED) behind the required `led_init(led_t *led, uint8_t pin)` / `led_set(led_t *led, led_state_t state)` API.
 - Button = onboard **Boot button, GPIO0, active LOW** (use the internal pull-up and a falling-edge interrupt via `gpio_install_isr_service` + `gpio_isr_handler_add`). The ISR must be `IRAM_ATTR`.
+- The wiring is drawn in `docs/wiring.svg` (README picture) and `diagram.json` (Wokwi, with `wokwi.toml`; Wokwi-only glue in `wokwi/`). If a pin or the code changes, update them and re-upload to the Wokwi project.
 - Serial port is COM5 (CH343 USB-UART). The small green LED that flickers with log output is the UART TX light, not the app's LED.
 
 ## Code style
