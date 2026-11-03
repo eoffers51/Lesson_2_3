@@ -81,8 +81,18 @@ idf.py -p COM5 flash monitor
 
 ## 📊 Results
 
-Serial Monitor output:
+Serial Monitor output on the board (ESP-IDF v6.0.2, ESP32-S3 at the default 160 MHz):
 
 ```
-(to be added after running on the board)
+I (279) main_task: Calling app_main()
+I (282) lesson_2_3: Mode: Blinking
+I (1281) lesson_2_3: loops=1000 work avg=3 us min=3 us max=390 us | period=999 us
+I (2281) lesson_2_3: loops=1000 work avg=3 us min=3 us max=371 us | period=1000 us
+I (3281) lesson_2_3: loops=1000 work avg=3 us min=3 us max=369 us | period=1000 us
+I (4281) lesson_2_3: loops=1000 work avg=3 us min=3 us max=370 us | period=1000 us
+I (5281) lesson_2_3: loops=1000 work avg=3 us min=3 us max=369 us | period=1000 us
 ```
+
+- **work avg = 3 µs**: one superloop pass (read the clock, poll the button, check the blink time) takes about 3 µs.
+- **max ≈ 370 µs**: the passes where the LED toggles. Sending the color to the WS2812 over RMT takes about that long.
+- **period = 1000 µs**: a full pass, including the 1 ms scheduler yield. That gives exactly one report per second, and there were no task-watchdog warnings.
