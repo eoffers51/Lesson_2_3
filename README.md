@@ -3,6 +3,7 @@
 ![Board](https://img.shields.io/badge/board-ESP32--S3--DevKitC--1-E7352C)
 ![Framework](https://img.shields.io/badge/ESP--IDF-v6.0.2-blue)
 ![Language](https://img.shields.io/badge/C-C11-555)
+[![Simulate on Wokwi](https://img.shields.io/badge/simulate-Wokwi-6c4cbb)](https://wokwi.com/projects/479662442477854721)
 
 Beetroot Academy homework ([`TASK.md`](TASK.md)). The onboard RGB LED blinks without blocking delays, all settings live in one `static const` config struct, the superloop measures its own speed, and the **Boot** button (interrupt-driven) switches the LED mode.
 
@@ -37,7 +38,7 @@ Board: VCC-GND YD-ESP32-S3 (an ESP32-S3-DevKitC-1 v1.0 clone), connected over th
 
 ## 🖥️ Simulate in Wokwi
 
-The circuit and code run in the [Wokwi](https://wokwi.com) simulator. In the simulation, click the **BOOT** button next to the board to switch modes.
+**[▶ Open the Wokwi project](https://wokwi.com/projects/479662442477854721)** and press the green ▶ button. The first build can take a minute or two on Wokwi's free servers. Click the **BOOT** button next to the board to switch modes.
 
 The Wokwi project runs this repo's own C code. Wokwi compiles ESP-IDF code with the Arduino ESP32 core, so [`wokwi/`](wokwi) has two small Wokwi-only files: `sketch.ino`, which starts our `app_main`, and `led.c`, the same LED API without the `led_strip` component. The `ESP_LOGI` messages (mode changes, loop timing) don't appear in Wokwi's serial monitor; watch the LED instead.
 

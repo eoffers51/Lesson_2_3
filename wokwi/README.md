@@ -1,6 +1,6 @@
 # Wokwi-only files
 
-A Wokwi project on wokwi.com holds a copy of this repo's code so it runs in the browser. Wokwi compiles ESP-IDF code with the **Arduino ESP32 core**, which needs two small changes:
+The [Wokwi project](https://wokwi.com/projects/479662442477854721) holds a copy of this repo's code so it runs in the browser. Wokwi compiles ESP-IDF code with the **Arduino ESP32 core**, which needs two small changes:
 
 | File in Wokwi | Comes from |
 |---|---|
